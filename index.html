@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Knockout</title>
+    <link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap-1.1.0.min.css" />
+    <style>
+      .search { float: right; margin-top: -2em }
+      .alert-message { margin-top: 1em }
+      .search input { width: 25em }
+      #content { margin-top: 1em }
+      #content :empty:after {
+        display: block;
+        text-align: center;
+        margin-top: 6em;
+        content: 'Loading...';
+      }
+      #content h1 {
+        width: 75%;
+      }
+      .avatar {
+        height: 1.25em;
+        float: left;
+        margin-right: 0.5em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div>
+        <h2>
+          <a href="/">Knockout Gist Viewer</a>
+        </h2>
+        <form class="search">
+          <input type="search" placeholder="Lookup Gist..." value="" />
+        </form>
+        <small>Testing Knockout</small>
+      </div>
+      <div id="content"></div>
+    </div>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+    <script src="http://cloud.github.com/downloads/SteveSanderson/knockout/knockout-1.2.1.js"></script>
+    <script src="https://raw.github.com/pvande/Milk/master/dist/v1.2.0/milk.min.js"></script>
+    <script src="application.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    </script>
+  </body>
+</html>
