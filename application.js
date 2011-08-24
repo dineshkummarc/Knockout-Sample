@@ -1,10 +1,10 @@
 var viewModel = {
   currentPage: ko.observable('index'),
   gists: ko.observableArray(),
-  gist: { attributes: ko.observable({}) },
+  gist: { attributes: ko.observable({ user: {} }) },
 };
 
-viewModel.gist.desc = ko.dependentObservable(function() {
+viewModel.gist.description = ko.dependentObservable(function() {
   return this.attributes().description || 'Gist #' + this.attributes().id;
 }, viewModel.gist);
 
@@ -26,8 +26,6 @@ function fetchGist(id) {
     success: function(data) {
       data.files = $.map(data.files, function(value) { return value });
       viewModel.gist.attributes(data);
-      viewModel.gist.attrs = data;
-      ko.applyBindings(viewModel, $('#content > div')[0]);
     },
   });
 }
@@ -37,7 +35,7 @@ function showIndex() {
 }
 
 function showGist(id) {
-  viewModel.gist.attributes({});
+  viewModel.gist.attributes({ user: {} });
   viewModel.currentPage('gist');
   fetchGist(id);
 }

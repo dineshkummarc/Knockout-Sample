@@ -40,30 +40,28 @@
         <div data-bind="visible: currentPage() == 'gist'" style="display: none"><div data-bind="visible: gist.attributes().id, template: { name: 'gist-detail', data: viewModel.gist }"></div></div>
       </div>
     </div>
-    <script type="template/mustache" id="gist-summary">
+    <script type="template/jquery-tmpl" id="gist-summary">
       <li data-bind="click: function() { showGist(this.id) }">
-        <a href="/gist/{{id}}">{{description}}</a>
+        <a data-bind="text: description, attr: { href: '/gist/' + id }"></a>
       </li>
     </script>
-    <script type="template/mustache" id="gist-detail">
-      {{#attrs}}
-        <h1>
-          <a href="{{user.url}}">
-            <img class="avatar" src="{{user.avatar_url}}" />
-          </a>
-          {{desc}}
-        </h1>
-        {{#files}}
-          <h4>{{filename}}</h4>
-          <pre><code>{{content}}</code></pre>
-        {{/files}}
-      {{/attrs}}
+    <script type="template/jquery-tmpl" id="gist-detail">
+      <h1>
+        <a data-bind="attr: { url: attributes().user.url }">
+          <img class="avatar" data-bind="attr: { src: attributes().user.avatar_url }" />
+        </a>
+        ${description}
+      </h1>
+      <div data-bind="template: { name: 'gist-file', foreach: attributes().files || [] }"></div>
+    </script>
+    <script type="template/jquery-tmpl" id="gist-file">
+      <h4 data-bind="text: filename"></h4>
+      <pre><code data-bind="text: content"></code></pre>
     </script>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-    <script src="https://raw.github.com/pvande/Milk/master/dist/v1.2.0/milk.js"></script>
+    <script src="http://github.com/downloads/SteveSanderson/knockout/jquery.tmpl.js"></script>
     <script src="http://cloud.github.com/downloads/SteveSanderson/knockout/knockout-1.2.1.js"></script>
-    <script src="knockoutMilkTemplateEngine.js"></script>
     <script src="application.js" type="text/javascript"></script>
   </body>
 </html>
