@@ -37,7 +37,9 @@
       </div>
       <div id="content">
         <ul data-bind="visible: currentPage() == 'index', template: { name: 'gist-summary', foreach: gists }"></ul>
-        <div data-bind="visible: currentPage() == 'gist'" style="display: none"><div data-bind="visible: gist.attributes().id, template: { name: 'gist-detail', data: viewModel.gist }"></div></div>
+        <div data-bind="visible: currentPage() == 'gist'" style="display: none">
+          <div data-bind="visible: gist.attributes().id, template: { name: 'gist-detail', data: viewModel.gist }"></div>
+        </div>
       </div>
     </div>
     <script type="template/jquery-tmpl" id="gist-summary">
